@@ -1,9 +1,10 @@
 <?php 
 class User {
-    private string $name;
-    private string $surname;
-    private int $age;
-    private array $addresses; 
+    protected string $name;
+    protected string $surname;
+    protected int $age;
+    protected array $addresses = []; 
+    protected int $phone;
 
     public function __construct($_name,$_surname,$_age)
     {
@@ -16,6 +17,7 @@ class User {
         }
     }
 
+    // setter and getter for name
     public function setName($_name){
         $this->name = $_name;
     }
@@ -24,6 +26,7 @@ class User {
         return $this->name;
     }
 
+    // setter and getter for surname
     public function setSurname($_surname){
         $this->surname = $_surname;
     }
@@ -32,6 +35,7 @@ class User {
         return $this->surname;
     }
 
+    // setter and getter for age
     public function setAge($_age){
         if (!is_int($_age)){
             throw new Exception('Is not a number');
@@ -45,6 +49,34 @@ class User {
     public function getAge(){
         return $this->age;
     }
+
+    // setter and getter for phone
+    public function setPhone($_phone){
+        if (is_int($_phone)) {
+            $this->phone = $_phone;
+        } else {
+            throw new Exception('Phone format not valid');
+        }
+    }
+
+    public function getPhone(){
+        return $this->phone;
+    }
+ 
+    // setter and getter for adresses
+    public function setAddresses($_street,$_city,$_zip_code,$_country){
+        if (is_string($_street) && is_string($_city) && is_int($_zip_code) && is_string($_country)) {
+            $address = "{$_street}, {$_city}, {$_country}, {$_zip_code}";
+            $this->addresses[] = $address;
+        } else {
+            throw new Exception('Address format not valid');
+        }
+    }
+    public function getAddresses(){
+        return $this->addresses;
+    }
+
+
 }
 
 
