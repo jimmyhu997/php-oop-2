@@ -4,7 +4,7 @@ class User {
     protected string $surname;
     protected int $age;
     protected array $addresses = []; 
-    protected int $phone;
+    protected $phone;
 
     public function __construct($_name,$_surname,$_age)
     {
@@ -52,7 +52,7 @@ class User {
 
     // setter and getter for phone
     public function setPhone($_phone){
-        if (is_int($_phone)) {
+        if (is_int($_phone) || is_float($_phone)) {
             $this->phone = $_phone;
         } else {
             throw new Exception('Phone format not valid');

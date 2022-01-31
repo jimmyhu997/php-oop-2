@@ -11,12 +11,13 @@ class vip_user extends User {
         } catch (Exception $e) {
             echo 'Eccezione: ' . $e->getMessage();
         }
-        $this->setDiscount();
+        $this->setDiscount($_level);
+        
     }
 
 
-    public function setDiscount(){
-        $this->discount = $this->level * 10;
+    public function setDiscount($_level){
+        $this->discount = $_level * 10;
     }
 
     public function getDiscount(){
@@ -24,7 +25,7 @@ class vip_user extends User {
     }
 
     public function setLevel($_level){
-        if(is_int($_level) && 0 < $_level < 10){
+        if(is_int($_level) && 0 < $_level && $_level < 10){
             $this->level = $_level;
         } else {
             throw new Exception ('Level value no valid');
